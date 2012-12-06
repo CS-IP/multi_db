@@ -102,6 +102,7 @@ module MultiDb
     def initialize(master, slaves, scheduler = Scheduler)
       @slaves    = scheduler.new(slaves)
       @master    = master
+      @config    = master.connection.instance_variable_get('@config')
       @reconnect = false
       @query_cache = {}
       if self.class.defaults_to_master
